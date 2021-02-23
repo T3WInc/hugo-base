@@ -5,7 +5,9 @@ RUN apt-get -qq update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get -qq install -y --no-install-recommends libstdc++6 python-pygments git ca-certificates asciidoc curl \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN apt-get install -y golang-go
+RUN wget https://dl.google.com/go/go1.13.linux-amd64.tar.gz
+RUN tar xvfz go1.13.linux-amd64.tar.gz
+RUN mv go /usr/local/go
 
 # Configuration variables
 ENV HUGO_VERSION 0.75.1
