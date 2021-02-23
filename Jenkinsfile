@@ -22,14 +22,14 @@ pipeline {
     
     stage('Build') {
       steps {
-        sh "docker build --force-rm --no-cache -t t3winc/hugo:"${params.semver}" . " 
+        sh 'docker build --force-rm --no-cache -t t3winc/hugo:"${params.semver}" . ' 
       }
     }
     
     stage('Publish') {
       steps {
         sh "cat /var/jenkins_home/my_password.txt | docker login -u schulzdl --password-stdin"
-        sh "docker push t3winc/hugo:"${params.semver}"
+        sh 'docker push t3winc/hugo:"${params.semver}"'
       }
     }
   }
