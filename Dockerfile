@@ -5,6 +5,8 @@ RUN apt-get -qq update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get -qq install -y --no-install-recommends libstdc++6 python-pygments git ca-certificates asciidoc curl \
 	&& rm -rf /var/lib/apt/lists/*
 
+RUN apt-get install -y golang-go
+
 # Configuration variables
 ENV HUGO_VERSION 0.75.1
 ENV HUGO_BINARY hugo_extended_${HUGO_VERSION}_Linux-64bit.deb
