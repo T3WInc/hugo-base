@@ -16,7 +16,7 @@ pipeline {
     stage('Initialization') {
       steps {
         buildName "${params.semver}"
-        buildDescription "$${params.branchname}"
+        buildDescription "${params.branchname}"
       }      
     }
     
