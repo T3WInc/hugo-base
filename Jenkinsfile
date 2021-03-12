@@ -22,14 +22,45 @@ pipeline {
     
     stage('Build') {
       steps {
-        sh 'docker build --force-rm --no-cache -t t3winc/hugo:"${params.semver}" . ' 
+        sh 'docker build --force-rm --no-cache -t hugo . ' 
       }
     }
+
+    stage('Test-Image'){
+      steps {
+          script {
+              try {                           
+                  def status = 0
+                  status = sh(returnStdout: true, script: "container-structure-test test --image 'hugo' --config './test/DockerTest/unit-test.yaml' --verbosity 'debug' --json | jq .Fail") as Integer
+                  echo "$status"
+                  if (status != 0) {                            
+                      error 'Image Test has failed'
+                  }
+
+              } catch (err) {
+                  error "Test-Image ERROR: The execution of the container structure tests failed, see the log for details."
+                  echo err
+              } 
+          }
+      }
+    }  
     
-    stage('Publish') {
+    stage('Publish-Topic') {
       steps {
         sh "cat /var/jenkins_home/my_password.txt | docker login -u schulzdl --password-stdin"
+        sh 'docker tag hugo:latest t3winc/hugo:"${params.semver}"'
         sh 'docker push t3winc/hugo:"${params.semver}"'
+      }
+    }
+
+    stage('Publish-Master'){
+      when {
+        environment name: 'BRANCH_NAME', value: 'master'
+      }
+      steps {
+        sh "cat /var/jenkins_home/my_password.txt | docker login -u schulzdl --password-stdin"
+        sh 'docker tag hugo:latest t3winc/hugo:latest'
+        sh 'docker push t3winc/hugo:latest'
       }
     }
   }
