@@ -47,9 +47,8 @@ pipeline {
     
     stage('Publish-Topic') {
       steps {
-        sh "cat /var/jenkins_home/my_password.txt | docker login -u schulzdl --password-stdin"
-        sh 'docker tag hugo:latest t3winc/hugo:"${params.semver}"'
-        sh 'docker push t3winc/hugo:"${params.semver}"'
+        sh 'chmod +x ./ci/publish-topic.sh'
+        sh "./ci/publish-topic.sh ${params.semver}"
       }
     }
 
@@ -58,9 +57,8 @@ pipeline {
         environment name: 'BRANCH_NAME', value: 'master'
       }
       steps {
-        sh "cat /var/jenkins_home/my_password.txt | docker login -u schulzdl --password-stdin"
-        sh 'docker tag hugo:latest t3winc/hugo:latest'
-        sh 'docker push t3winc/hugo:latest'
+        sh 'chmod +x ./ci/publish-master.sh'
+        sh "./ci/publish-master.sh ${params.semver}"
       }
     }
   }
