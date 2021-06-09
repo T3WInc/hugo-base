@@ -70,5 +70,5 @@ jobs:
         url: 'https://jenkins.t3winc.com'
         user: 'admin'
         token: '11874832c8514a340f399e1573033e6dd5'
-        job: '/job/hugo_image'
+        job: '/job/docker/hugo_image'
         parameters: "semver=${{ steps.gitversion.outputs.fullSemVer }}&branchname=${{ steps.gitversion.outputs.branchname }}"
