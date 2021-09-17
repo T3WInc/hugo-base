@@ -1,3 +1,6 @@
+# Project
+Any issues for this repository should be created here, but then linked or attached to the **Docker Project** for job scheduling and prioritization.
+
 monachus/hugo
 ==============
 
