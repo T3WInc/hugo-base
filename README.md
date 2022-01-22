@@ -1,7 +1,7 @@
 # Jenkins
 |**Environment**|**Status Badge**|**State**|**Status Badge**
 |-----|-----|-----|-----|
-|**Action**|[![CI](https://github.com/T3WInc/Hugo-Base/actions/workflows/main.yml/badge.svg)](https://github.com/T3WInc/Hugo-Base/actions/workflows/main.yml)|**Dev**|[![Build](https://badge.t3winc.com/images/hugoDev.svg)](https://jenkins.t3winc.com/job/Docker/job/Hugo_Base)|
+|**Action**|[![CI](https://github.com/T3WInc/hugo-base/actions/workflows/main.yml/badge.svg)](https://github.com/T3WInc/hugo-base/actions/workflows/main.yml)|**Dev**|[![Build](https://badge.t3winc.com/images/hugoDev.svg)](https://jenkins.t3winc.com/job/Docker/job/Hugo_Base)|
 |**Build**|[![Build](https://badge.t3winc.com/images/hugoBuild.svg)](https://jenkins.t3winc.com/job/Docker/job/Hugo_Base)|**Prod**|[![Build](https://badge.t3winc.com/images/hugoProd.svg)](https://jenkins.t3winc.com/job/Docker/job/Hugo_Base)|
 # Project
 Any issues for this repository should be created here, but then linked or attached to the **Docker Project** for job scheduling and prioritization.
