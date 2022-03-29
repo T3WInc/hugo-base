@@ -105,7 +105,7 @@ pipeline {
 			}
             post {
                 success {
-					sh "python3 /var/jenkins_home/workspace/Affirm_Store/build/scripts/src/calendar-api.py Hugo ${semver} 1199934081217038"
+					 sh "python3 /var/jenkins_home/scripts/calendar-api.py Hugo ${semver} 1199934081217038"
                     createSuccessBadge(
                         imageName: 'hugoProd.svg',
                         prodName: 'Hugo',
