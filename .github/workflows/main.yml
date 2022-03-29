@@ -12,30 +12,3 @@ jobs:
 
     #- run: GitVersion
     
-    - name: GitVersion
-      id: gitversion
-      uses: nmcc/actions-gitversion@v1
-      with:
-        path-to-gitversion: gitversion
-
-    - name: Public IP
-      id: ip 
-      uses: haythem/public-ip@v1.2
-
-    - name: Print Public IP
-      run: |
-        echo ${{ steps.ip.outputs.ipv4 }}
-        echo ${{ steps.ip.outputs.ipv6 }}
-
-    - name: Replace any dashes
-      id: replacer
-      uses: frabert/replace-string-action@v2.0
-      with:
-        pattern: '-'
-        string: "${{ steps.gitversion.outputs.fullSemVer }}"
-        replace-with: '_'     
-                  
-    - name: Assign variables
-      run: |
-        echo "${{ steps.gitversion.outputs.SemVer }}"
-        echo "${{ steps.gitversion.outputs.BranchName }}"
